@@ -12,6 +12,6 @@ Requires Node.js on PATH. Override the rules URL with `KANDIARU_GUARD_URL`.
 One line on a new PC: `curl -fsSL https://kandiaru.inovacodeia.tech/setup | sh` (Windows: `irm https://kandiaru.inovacodeia.tech/setup.ps1 | iex`).
 
 ```
-claude plugin marketplace add DeaconKrauser/kandiaru-guard
+claude plugin marketplace add https://github.com/DeaconKrauser/kandiaru-guard.git
 claude plugin install kandiaru-guard@kandiaru-guard
 ```

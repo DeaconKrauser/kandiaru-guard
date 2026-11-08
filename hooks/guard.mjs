@@ -13,7 +13,7 @@ const OVERRIDE_TTL_MS = 10 * 60 * 1000;
 const INSTALL_LOCK = join(STATE, 'guard-install.lock');
 const INSTALL_LOG = join(STATE, 'guard-install.log');
 // The server may only ask for these commands; anything else is ignored.
-const ALLOWED = [/^claude plugin marketplace add [\w.-]+\/[\w.-]+$/, /^claude plugin install [\w.-]+@[\w.-]+$/, /^claude mcp add -s local serena -- uvx --from git\+https:\/\/github\.com\/oraios\/serena serena start-mcp-server --context ide-assistant --project \{cwd\}$/];
+const ALLOWED = [/^claude plugin marketplace add (?:[\w.-]+\/[\w.-]+|https:\/\/github\.com\/[\w.-]+\/[\w.-]+\.git)$/, /^claude plugin install [\w.-]+@[\w.-]+$/, /^claude mcp add -s local serena -- uvx --from git\+https:\/\/github\.com\/oraios\/serena serena start-mcp-server --context ide-assistant --project \{cwd\}$/];
 const CODE_MARKERS = ['.git', 'package.json', 'pyproject.toml', 'go.mod', 'Cargo.toml'];
 // "leia o arquivo inteiro", "log completo", "sem filtro", "full file"
 const OVERRIDE = /\b(inteir[oa]|complet[oa]|sem filtro|full (file|log|output))\b/i;

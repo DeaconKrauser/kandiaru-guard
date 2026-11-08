@@ -1,6 +1,6 @@
 {
   "name": "kandiaru-guard",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Enforces Kandiaru token economy: injects the operator's rules every session and blocks unfiltered large reads and log dumps.",
   "author": { "name": "DeaconKrauser" },
   "license": "MIT"
