@@ -1,0 +1,9 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "kandiaru-guard",
+  "description": "Kandiaru token-economy guard for Claude Code.",
+  "owner": { "name": "DeaconKrauser", "url": "https://github.com/DeaconKrauser" },
+  "plugins": [
+    { "name": "kandiaru-guard", "description": "Injects Kandiaru economy rules and blocks wasteful reads and log dumps.", "source": "./", "category": "productivity" }
+  ]
+}

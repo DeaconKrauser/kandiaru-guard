@@ -1,0 +1,13 @@
+{
+  "hooks": {
+    "SessionStart": [
+      { "matcher": "startup|resume|clear|compact", "hooks": [ { "type": "command", "command": "node", "args": ["${CLAUDE_PLUGIN_ROOT}/hooks/guard.mjs", "session"], "timeout": 10 } ] }
+    ],
+    "UserPromptSubmit": [
+      { "hooks": [ { "type": "command", "command": "node", "args": ["${CLAUDE_PLUGIN_ROOT}/hooks/guard.mjs", "prompt"], "timeout": 5 } ] }
+    ],
+    "PreToolUse": [
+      { "matcher": "^Read$|^Bash$|^mcp__.+__read_console_messages$", "hooks": [ { "type": "command", "command": "node", "args": ["${CLAUDE_PLUGIN_ROOT}/hooks/guard.mjs", "tool"], "timeout": 5 } ] }
+    ]
+  }
+}
