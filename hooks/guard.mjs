@@ -97,9 +97,12 @@ async function session(input) {
   const value = await rules();
   const cwd = input.cwd || process.cwd();
   const isProject = CODE_MARKERS.some((m) => existsSync(join(cwd, m)));
-  const missing = (value.tools || []).filter((tool) => (tool.scope !== 'project' || isProject) && !installed(tool, cwd));
+  const absent = (value.prerequisites || []).filter((p) => !installed(p, cwd));
+  const blocked = new Set(absent.map((p) => p.needed_by));
+  const missing = (value.tools || []).filter((tool) => (tool.scope !== 'project' || isProject) && !blocked.has(tool.id) && !installed(tool, cwd));
   const lines = ['KANDIARU GUARD (regras obrigatórias do operador, servidas pelo Kandiaru):', ...value.rules.map((r) => '- ' + r),
     'Hooks bloqueiam leitura inteira de arquivos grandes e logs sem filtro. Se uma ação for negada, refaça do jeito econômico; não contorne.'];
+  for (const p of absent) lines.push(`FALTA ${p.id} NESTE PC (necessário para ${p.needed_by}). Avise o operador logo no início e mande instalar com: ${process.platform === 'win32' ? p.manual.windows : p.manual.unix}`);
   const installing = autoInstall(missing, cwd);
   if (installing.length) lines.push('Instalando em segundo plano: ' + installing.join(', ') + '. Avise o operador em uma linha que passam a valer na próxima sessão.');
   out({ hookSpecificOutput: { hookEventName: 'SessionStart', additionalContext: lines.join('\n') } });
